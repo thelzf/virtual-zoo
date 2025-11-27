@@ -1,19 +1,16 @@
 * text=auto eol=lf
 
-*.blade.php diff=html linguist-language=Blade
-*.css diff=css linguist-detectable=true
-*.html diff=html
-*.js linguist-detectable=true
-*.json linguist-detectable=true
-*.md diff=markdown
-*.php diff=php linguist-detectable=true
-*.scss linguist-detectable=true
+# Forçar Laravel como linguagem principal
+* linguist-language=PHP
 
-/.github export-ignore
-CHANGELOG.md export-ignore
-.styleci.yml export-ignore
+# Especificar Blade
+*.blade.php linguist-language=Blade
 
-# Excluir diretórios que não são código
+# Permitir outras linguagens serem detectadas
+*.js linguist-detectable=true linguist-language=JavaScript
+*.css linguist-detectable=true linguist-language=CSS
+*.json linguist-detectable=true linguist-language=JSON
+
+# Excluir dependências
 /vendor/** linguist-vendored
 /node_modules/** linguist-vendored
-/public/storage/** linguist-vendored
