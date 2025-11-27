@@ -1,11 +1,19 @@
 * text=auto eol=lf
 
-*.blade.php diff=html
-*.css diff=css
+*.blade.php diff=html linguist-language=Blade
+*.css diff=css linguist-detectable=true
 *.html diff=html
+*.js linguist-detectable=true
+*.json linguist-detectable=true
 *.md diff=markdown
-*.php diff=php
+*.php diff=php linguist-detectable=true
+*.scss linguist-detectable=true
 
 /.github export-ignore
 CHANGELOG.md export-ignore
 .styleci.yml export-ignore
+
+# Excluir diretórios que não são código
+/vendor/** linguist-vendored
+/node_modules/** linguist-vendored
+/public/storage/** linguist-vendored
