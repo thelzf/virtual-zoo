@@ -12,7 +12,11 @@ return new class extends Migration {
     {
         Schema::create('kingdoms', function (Blueprint $table) {
             $table->id();
-            $table->string('page');
+            $table->string('name');
+            $table->string('slug')->unique();
+            $table->string('scientific_name')->nullable();
+            $table->string('hero_image_url')->nullable();
+            $table->text('description')->nullable();
             $table->timestamps();
         });
     }

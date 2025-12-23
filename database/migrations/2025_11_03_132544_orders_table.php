@@ -12,16 +12,12 @@ return new class extends Migration {
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
-            $table->string('orders');
-            $table->unsignedBigInteger('class_id');  // Mudar para unsignedBigInteger
+            $table->string('name');
+            $table->string('slug')->unique();
+            $table->string('scientific_name')->nullable();
+            $table->text('description')->nullable();
+            $table->foreignId('class_id')->constrained('classes')->cascadeOnDelete();
             $table->timestamps();
-
-            // Definir a chave estrangeira
-            $table
-                ->foreign('class_id')
-                ->references('id')
-                ->on('classes')  // Nome da tabela referenciada
-                ->onDelete('cascade');  // Opcional: ação ao deletar
         });
     }
 
@@ -30,11 +26,6 @@ return new class extends Migration {
      */
     public function down(): void
     {
-        Schema::table('orders', function (Blueprint $table) {
-            // Remover a chave estrangeira primeiro
-            $table->dropForeign(['class_id']);
-        });
-
         Schema::dropIfExists('orders');
     }
 };

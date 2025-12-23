@@ -12,16 +12,12 @@ return new class extends Migration {
     {
         Schema::create('species', function (Blueprint $table) {
             $table->id();
-            $table->string('species');
-            $table->unsignedBigInteger('genus_id');  // Mudar para unsignedBigInteger
+            $table->string('name');
+            $table->string('slug')->unique();
+            $table->string('scientific_name')->nullable();
+            $table->text('description')->nullable();
+            $table->foreignId('genus_id')->constrained('genera')->cascadeOnDelete();
             $table->timestamps();
-
-            // Definir a chave estrangeira
-            $table
-                ->foreign('genus_id')
-                ->references('id')
-                ->on('genus')  // Nome da tabela referenciada
-                ->onDelete('cascade');  // Opcional: ação ao deletar
         });
     }
 
@@ -30,11 +26,6 @@ return new class extends Migration {
      */
     public function down(): void
     {
-        Schema::table('species', function (Blueprint $table) {
-            // Remover a chave estrangeira primeiro
-            $table->dropForeign(['genus_id']);
-        });
-
         Schema::dropIfExists('species');
     }
 };

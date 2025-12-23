@@ -12,16 +12,12 @@ return new class extends Migration {
     {
         Schema::create('phylums', function (Blueprint $table) {
             $table->id();
-            $table->string('phylums');
-            $table->unsignedBigInteger('kingdom_id');  // Mudar para unsignedBigInteger
+            $table->string('name');
+            $table->string('slug')->unique();
+            $table->string('scientific_name')->nullable();
+            $table->text('description')->nullable();
+            $table->foreignId('kingdom_id')->constrained('kingdoms')->cascadeOnDelete();
             $table->timestamps();
-
-            // Definir a chave estrangeira
-            $table
-                ->foreign('kingdom_id')
-                ->references('id')
-                ->on('kingdoms')  // Nome da tabela referenciada
-                ->onDelete('cascade');  // Opcional: ação ao deletar
         });
     }
 
@@ -30,11 +26,6 @@ return new class extends Migration {
      */
     public function down(): void
     {
-        Schema::table('phylum', function (Blueprint $table) {
-            // Remover a chave estrangeira primeiro
-            $table->dropForeign(['kingdom_id']);
-        });
-
         Schema::dropIfExists('phylums');
     }
 };

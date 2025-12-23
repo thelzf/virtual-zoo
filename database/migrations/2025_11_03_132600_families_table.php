@@ -12,16 +12,12 @@ return new class extends Migration {
     {
         Schema::create('families', function (Blueprint $table) {
             $table->id();
-            $table->string('families');
-            $table->unsignedBigInteger('order_id');  // Mudar para unsignedBigInteger
+            $table->string('name');
+            $table->string('slug')->unique();
+            $table->string('scientific_name')->nullable();
+            $table->text('description')->nullable();
+            $table->foreignId('order_id')->constrained('orders')->cascadeOnDelete();
             $table->timestamps();
-
-            // Definir a chave estrangeira
-            $table
-                ->foreign('order_id')
-                ->references('id')
-                ->on('orders')  // Nome da tabela referenciada
-                ->onDelete('cascade');  // Opcional: ação ao deletar
         });
     }
 
@@ -30,11 +26,6 @@ return new class extends Migration {
      */
     public function down(): void
     {
-        Schema::table('families', function (Blueprint $table) {
-            // Remover a chave estrangeira primeiro
-            $table->dropForeign(['order_id']);
-        });
-
         Schema::dropIfExists('families');
     }
 };
