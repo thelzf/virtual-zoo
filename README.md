@@ -2,7 +2,7 @@
 
 Welcome. Choose your preferred language to read the documentation:
 
-- [English](docs/en/README.md)
-- [Português (Brasil)](docs/pt/README.md)
+- [English](docs/en/)
+- [Português (Brasil)](docs/pt/)
 
 Each localized README contains the full project overview, setup steps, and usage guidance.
