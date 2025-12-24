@@ -1,6 +1,6 @@
 # Virtual Zoo Project
 
-Welcome. Choose your preferred language to read the [documentation](docs/):
+Welcome. Choose your preferred language to read the [documentation](docs/)
 
 
 ![Laravel](https://img.shields.io/badge/Laravel-10%2B-FF2D20?style=for-the-badge&logo=laravel&logoColor=white)
