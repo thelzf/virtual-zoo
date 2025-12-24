@@ -249,7 +249,8 @@ We welcome contributions to Virtual Zoo! Please follow these steps:
 
 ## Support
 
-For support, email support@virtualzoo.com or join our Slack channel.
+If you need help or want to report a bug, please open an issue on GitHub:
+https://github.com/thelzf/virtual-zoo/issues
 
 ## Acknowledgments
 
